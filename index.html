@@ -1,12 +1,109 @@
 <!DOCTYPE html>
-<html lang="en"> 
-    <head> <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>My Basic Web Application</title> 
-    </head> 
-    <body> 
-        <h1>Welcome to My Basic Web Application</h1> 
-        <p>This is a simple HTML file for the CI/CD assignment.</p> 
-        <h2> Next Update</h2>
-    </body> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+        <h1 style="text-align:center;">TASK TRACKER</h1>
+    </header>
+    <div id="table-div">
+        <div class="div-form">
+            <form id="new-entry">
+                <label for="filter">Filter: </label>
+                <select id="filter" title="Filter">
+                    <option value="all">All</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal Space">Personal Space</option>
+                </select>
+                <br>
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Sub-Category</th>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>Tools</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr>
+                    <td>Work</td>
+                    <td>Meeting</td>
+                    <td>2024-10-01</td>
+                    <td>Client Meeting</td>
+                    <td>
+                        <button onclick="updateRow(this)">Update</button>
+                        <button onclick="deleteRow(this)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Personal Space</td>
+                    <td>Painting</td>
+                    <td>2024-10-02</td>
+                    <td>-</td>
+                    <td>
+                        <button onclick="updateRow(this)">Update</button>
+                        <button onclick="deleteRow(this)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Work</td>
+                    <td>Project</td>
+                    <td>2024-10-03</td>
+                    <td>Mail</td>
+                    <td>
+                        <button onclick="updateRow(this)">Update</button>
+                        <button onclick="deleteRow(this)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Personal Space</td>
+                    <td>Exercise</td>
+                    <td>2024-10-04</td>
+                    <td>Running</td>
+                    <td>
+                        <button onclick="updateRow(this)">Update</button>
+                        <button onclick="deleteRow(this)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="form-container">
+        <h2 style="text-align:center;">START A NEW TASK</h2>
+        <form id="form-entry">
+            <label for="category"><strong>Category:</strong></label>
+            <select id="category" name="category" title="Category">
+                <option value="Work">Work</option>
+                <option value="Personal Space">Personal Space</option>
+            </select>
+            <br><br>
+            <label for="subCategory"><strong>Sub-Category:</strong></label>
+            <input type="text" id="subCategory" name="subCategory" placeholder="Sub-Category" required>
+            <br><br>
+            <label for="date"><strong>Date:</strong></label>
+            <input type="date" id="date" name="date" required>
+            <br><br>
+            <label for="task"><strong>Task:</strong></label>
+            <input type="text" id="task" name="task" placeholder="Task Name" required>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
 </html>
