@@ -1,120 +1,357 @@
+html{
+    overflow-y: scroll;
+}
+/* Body Styles */
 body {
-    background-image: url("https://www.getharvest.com/hs-fs/hubfs/resources/harvest-gif-motivate.gif?width=720&name=harvest-gif-motivate.gif");
-  }
-.div-form{
-    float:absolute;
-    margin-left: 200px;
-    background-color:antiquewhite;
-    width: 67%;
-    margin: 20px auto; 
-    padding: 20px; 
+    display: flex; /* Enables flexbox layout for the body element */
+    flex-direction: column; /* Arranges flex items in a column (vertically) */
+    align-items: center; /* Centers flex items horizontally */
+    margin: 0; /* Removes default margin around the body */
+    font-family: Arial, sans-serif; /* Sets the font for the body text */
+    overflow-y: auto; /* Enables vertical scrolling if needed */
+}
+
+/* Header Title Styles */
+h1 {
+    background-color: #fefefe;
+    margin: 0; /* Remove margin to prevent shifting */
+    padding: 10px; /* Add some padding for spacing */
+    color: #7a0808; /* Text color */
+    position: fixed; /* Fix the position */
+    width: 100%; /* Full width */
+    z-index: 1001; /* Above the header */
+    text-align: center; /* Centers the text inside the h1 element */
+    overflow: hidden; /* Ensures text is clipped */
+    white-space: nowrap; /* Prevents line breaks */
+    border-right: 3px solid #7a0808; /* Cursor effect */
+    animation: blink 0.75s step-end infinite; /* Cursor blink animation */
+    transition: transform 0.5s, opacity 0.5s; /* Smooth transformation */
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.enlarge {
+    opacity: 0; /* Fade out */
+}
+
+
+/* Header Styles */
+header {
+    position: fixed; /* Fix header position */
+    top: 50px; /* Position below the h1 */
+    background-color: #7a0808; /* Dark red background */
+    width: 100%; /* Full width */
+    padding: 15px 0; /* Padding for header */
+    z-index: 1000; /* Ensure it is above other content */
+}
+
+/* Navigation Styles */
+nav {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center the links */
+}
+
+/* Navigation Link Styles */
+nav a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* White text */
+    padding: 10px 20px; /* Spacing for links */
+    margin: 0 10px; /* Margin between links */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Common Hover and Active Effect */
+nav a:hover, nav a.active {
+    color: #9b0a0a; /* Text color on hover and active */
+    background-color: #fefefe; /* Background color on hover and active */
+    transform: scale(1.05); /* Slightly enlarge on hover and active */
+}
+
+/* Content Section Styles */
+.content-section {
+    margin-top: 120px; /* Space below the fixed header */
+    padding: 15px; /* Space inside the content section */
+    background-color: #ffffff; /* Background color for contrast */
+    border: 1px solid #ddd; /* Light border for definition */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 850px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .content-section {
+        margin-top: 80px; /* Adjust for smaller screens */
+    }
+}
+
+/* Style for the form inputs and textarea */
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 70vw;         /* Set width to 80% */ 
+    display: block;     /* Make them block elements */
+    margin: 10px auto; /* Center them with automatic left and right margins */
+    padding: 10px;      /* Add some padding for better appearance */
+    font-size: 16px;    /* Adjust font size */
+    border: 1px solid #ccc;   /* Add a border */
+    border-radius: 5px;       /* Rounded corners */
+    transition: box-shadow 0.3s; /* Smooth transition for shadow */
+}
+
+/* Add hover effect for inputs */
+input[type="text"]:hover,
+input[type="date"]:hover,
+textarea:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Style for the button */
+button {
+    width: 20vw;         /* Set button width to 80% */
+    max-width: 200px;    /* Max width for better layout on larger screens */
+    display: block;     /* Make it a block element */
+    margin: 10px auto; /* Center it */
+    padding: 10px;      /* Add padding */
+    font-size: 16px;    /* Adjust font size */
+    background-color: #7a0808; /* Example button color */
+    color: white;       /* Button text color */
+    border: none;       /* Remove border */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;    /* Change cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+
+}
+
+button:hover {
+    background-color: #663a3a; /* Darken button on hover */
+}
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-100%); /* Center horizontally */
+    background-color: #3d3e3d; /* Dark background */
+    color: white; /* White text */
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out; /* Smooth fade out */
+    opacity: 1; /* Start hidden */
+}
+
+/* Optional: Add keyframes for fade-out animation */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Add a class for hiding notifications */
+.notification.hide {
+    animation: fadeOut 1s forwards; /* Fade out effect */
+    opacity: 0; /* Start hidden */
+}
+
+#tasksContainer {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange tasks in a column */
+    align-items: center; /* Center tasks horizontally */
+    padding: 20px; /* Add padding around the container */
+}
+
+.task-item {
+    background-color: #f9f9f9; /* Light background for tasks */
+    border: 1px solid #ccc; /* Light border around tasks */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Inner padding for better spacing */
+    width: 70vw; /* Set width to 70% of the viewport width to match input fields */
+    max-width: 800px; /* Max width for larger screens */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+/* Hover effect for task items */
+.task-item:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+/* Ensure task list and input fields have consistent styling */
+#taskList, input[type="text"], input[type="date"], textarea {
+    width: 70vw; /* Set width to match */
+    max-width: 800px; /* Set maximum width */
+    margin: 10px auto; /* Centering margins */
+}
+
+#taskList {
+    display: flex; /* Make taskList a flex container */
+    flex-direction: column; /* Arrange tasks vertically */
+    gap: 0.5cm; /* Add a 0.5cm gap between each task */
+}
+
+/* styling for pop up display all details */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.task-item {
     border: 1px solid #ccc;
-    border-radius: 5px; 
-}
-#form-container {
-    background-color:antiquewhite;
-    width: 67%; 
-    margin: 20px auto;
-    padding: 20px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-}
-.table {
-    margin: 20px auto;
-    width: 70%; 
-    border-collapse: collapse;
-    border: 1px solid #000; 
-}
-
-.table th, .table td {
-    border: 1px solid black;
-    padding: 8px;
-    background-color:antiquewhite;
-}
-#form-entry label {
-    display: block; 
-    margin-bottom: 5px; 
-}
-
-#form-entry input[type="text"], #form-entry select {
-    width: calc(100% - 10px);
-    padding: 8px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-}
-
-#form-entry input[type="submit"] {
-    background-color: #007bff; 
-    color: #fff; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 5px; 
+    padding: 10px;
+    margin: 10px 0;
     cursor: pointer;
 }
 
-#form-entry input[type="submit"]:hover {
-    background-color: #0056b3;
+.header {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    width: 70vw; /* Set width to match the task list block */
+    max-width: 800px; /* Set a maximum width for larger screens */
+    margin: 20px auto; /* Center the header with some top and bottom margin */
 }
 
-
-.stopwatch {
-    font-size: 18px; 
-    margin-bottom: 10px; 
+h2 {
+    align-content: flex-start;
+    padding:10px;
+    margin: 0; /* Remove default margin */
 }
 
-
-.table button {
-    padding: 6px 12px; 
-    margin-right: 5px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-
-}
-.table button:nth-child(odd) {
-    background-color: #007bff; 
-    color: #fff; 
+#taskSearch {
+    flex: 1; /* Allow the search input to fill the remaining space */
+    margin-left: 10px; /* Add space between the title and the input */
+    padding: 8px; /* Add some padding for better appearance */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Rounded corners */
+    height: 20px; /* Match the height of other input fields */
 }
 
-
-.table button:nth-child(even) {
-    background-color: #ff0000; 
-    color: #fff; 
-}
-.table button:hover {
-    opacity: 0.8; 
+/* Ensure consistent styling for the task list */
+#taskList {
+    display: flex; /* Make taskList a flex container */
+    flex-direction: column; /* Arrange tasks vertically */
+    gap: 0.5cm; /* Add a 0.5cm gap between each task */
 }
 
-#login-container, #signup-container{
-    background-color:antiquewhite;
-    width: 30%; 
-    margin: 20px auto;
-    padding: 20px; 
-    border: 1px solid #000000; 
-    border-radius: 5px;
+#taskSearch:focus {
+    border-color: #7a0808; /* Change border color on focus */
+    outline: none; /* Remove default outline */
 }
-#login-btn, #signup-btn{
-    padding: 6px 12px; 
-    margin-right: 5px; 
-    border: none; 
-    border-radius: 5px; 
+
+#monthDisplay {
+    text-align: left;
+    font-weight: bold; /* Make button text bold */
+  }
+  
+  #monthYearDisplay {
+    display: flex; 
+    align-items: center;
+    width: 600px;
+  }
+  
+  button.calenderBtn {
     cursor: pointer;
-    align-self: center; 
-    color: white;
-    background-color: #007bff; 
+    font-size: 1.5em;
+    background-color: transparent; /* Make button background transparent */
+    border: none; /* Remove default button borders */
+    color: #333; /* Button text color */
+  }
+
+  .monthSwitch {
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Vertically center the items */
+    justify-content:space-around; /* Space between buttons and month name */
+    justify-items: center;
+    width: 100%; /* Full width */
+    max-width: 600px; /* Optional: Set a maximum width */
+    margin: 0 auto; /* Center the container */
 }
-#login-form input[type="text"],[type="password"]{
-    width: calc(100% - 10px);
-    padding: 8px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-}
-#signup-form input[type="text"],[type="password"],[type="email"]{
-    width: calc(100% - 10px);
-    padding: 8px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
+
+  
+  .calendar {
+    width: 100%; /* 100% width of the container */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 3px; /* Space between calendar cells */
+  }
+  
+  .calendar-day {
+    cursor: pointer;
+    padding: 35px;
+    border: 1px solid #7a0808;
     border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .calendar-day:hover {
+    box-shadow: 0 4px 10px rgba(84, 1, 1, 0.4); /* Increase shadow on hover */
+  }
+  
+  .calendar-header {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #7a0808;
+  }
+  
+  .calendar-date {
+    font-size: 1.5em; /* Larger font size for date */
+    font-weight: bold; /* Make date bold */
+  }
+
+  .task-dot {
+    height: 6px;
+    width: 6px;
+    background-color: red; /* Or any color you prefer */
+    border-radius: 50%; /* Makes it a circle */
+    display: inline-block;
+    margin: 1px; /* Space between dots */
+}
+
+#taskListContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    z-index: 1000;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
 }

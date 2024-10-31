@@ -4,106 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <h1 id="headerTitle">Task Manager</h1>
     <header>
-        <h1 style="text-align:center;">TASK TRACKER</h1>
+        <nav>
+            <a href="#" id="todayLink">Today's Tasks</a>
+            <a href="#" id="createTaskLink">Create New Task</a> 
+            <a href="#" id="viewTasksLink">All Tasks</a>
+            <a href="#" id="toggleCalendarLink">Calendar</a>
+        </nav>
     </header>
-    <div id="table-div">
-        <div class="div-form">
-            <form id="new-entry">
-                <label for="filter">Filter: </label>
-                <select id="filter" title="Filter">
-                    <option value="all">All</option>
-                    <option value="Work">Work</option>
-                    <option value="Personal Space">Personal Space</option>
-                </select>
-                <br>
+    <main>
+        <!-- Creating a new task section -->
+        <section id="taskFormSection" class="content-section" style="display: none;">
+            <h2>Create A Task</h2>
+            <form id="taskForm">
+                <label for="taskTitle">Task Title:</label>
+                <input type="text" id="taskTitle" required>
+                
+                <label for="fromDate">From Date:</label>
+                <input type="date" id="fromDate" required>
+                
+                <label for="toDate">To Date:</label>
+                <input type="date" id="toDate" required>
+                
+                <label for="taskDescription">Description:</label>
+                <textarea id="taskDescription" required></textarea>
+                
+                <button type="submit">Add Task</button>
             </form>
+            <div id="notification" class="notification" style="display: none;">Task Added Successfully!</div>
+        </section>
+
+        <!-- All tasks Section -->
+        <section id="tasksContainer" class="content-section" style="display: none;">
+            <h2>All Tasks</h2>
+            <input type="text" id="taskSearch" placeholder="Search tasks...">
+            <div id="taskList"></div>
+        </section>
+
+        <div id="taskModal" class="modal" style="display: none;">
+            <div class="modal-content" role="dialog">
+                <span id="closeModal" class="close" role="button">&times;</span>
+                <p><strong>From:</strong> <span id="modalFromDate"></span> <strong>To:</strong> <span id="modalToDate"></span></p>
+                <h2><strong>Title:</strong> <span id="modalTitle"></span></h2>
+                <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                <button id="editTask">Edit</button>
+                <button id="deleteTask">Delete</button>
+                <button id="saveTask" style="display: none;">Save</button>
+                <button id="cancelEdit" style="display: none;">Cancel</button>
+            </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Sub-Category</th>
-                    <th>Date</th>
-                    <th>Task</th>
-                    <th>Tools</th>
-                </tr>
-            </thead>
-            <tbody class="table-body">
-                <tr>
-                    <td>Work</td>
-                    <td>Meeting</td>
-                    <td>2024-10-01</td>
-                    <td>Client Meeting</td>
-                    <td>
-                        <button onclick="updateRow(this)">Update</button>
-                        <button onclick="deleteRow(this)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Personal Space</td>
-                    <td>Painting</td>
-                    <td>2024-10-02</td>
-                    <td>-</td>
-                    <td>
-                        <button onclick="updateRow(this)">Update</button>
-                        <button onclick="deleteRow(this)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Work</td>
-                    <td>Project</td>
-                    <td>2024-10-03</td>
-                    <td>Mail</td>
-                    <td>
-                        <button onclick="updateRow(this)">Update</button>
-                        <button onclick="deleteRow(this)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Personal Space</td>
-                    <td>Exercise</td>
-                    <td>2024-10-04</td>
-                    <td>Running</td>
-                    <td>
-                        <button onclick="updateRow(this)">Update</button>
-                        <button onclick="deleteRow(this)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="form-container">
-        <h2 style="text-align:center;">START A NEW TASK</h2>
-        <form id="form-entry">
-            <label for="category"><strong>Category:</strong></label>
-            <select id="category" name="category" title="Category">
-                <option value="Work">Work</option>
-                <option value="Personal Space">Personal Space</option>
-            </select>
-            <br><br>
-            <label for="subCategory"><strong>Sub-Category:</strong></label>
-            <input type="text" id="subCategory" name="subCategory" placeholder="Sub-Category" required>
-            <br><br>
-            <label for="date"><strong>Date:</strong></label>
-            <input type="date" id="date" name="date" required>
-            <br><br>
-            <label for="task"><strong>Task:</strong></label>
-            <input type="text" id="task" name="task" placeholder="Task Name" required>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <script src="index.js"></script>
+
+        <!-- Calendar Section -->
+        <section id="monthDisplay" class="content-section" style="display: none;">
+            <h2>Monthly Tasks</h2>
+            <div class="monthSwitch" id="monthYearDisplay">
+                <button class="calenderBtn" id="prevMonth">&#x2191;</button>
+                <span id="currentMonthYear"></span>
+                <button class="calenderBtn" id="nextMonth">&#x2193;</button>
+            </div>
+            <div id="calendar" class="calendar"></div>
+            <div id="taskListContainer" style="display: none;">
+                <h2>Tasks for <span id="taskDate"></span></h2>
+                <div id="taskList"></div>
+                <button id="closeTaskList">Close</button>
+            </div>
+        </section>
+
+        <!-- Today's Task Section -->
+        <section id="todayTasks" class="content-section" style="display: none;">
+            <h2>Today's Tasks</h2>
+            <div id="todayTaskList"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
