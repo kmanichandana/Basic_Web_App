@@ -13,7 +13,6 @@ This project is a responsive web application designed to showcase my personal po
 
 ### **Frontend**  
 - **Framework:** Vue.js  
-- **Routing:** Vue Router  
 - **Styling:** CSS
 
 ### **Development Tools**  
