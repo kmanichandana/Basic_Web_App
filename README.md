@@ -52,11 +52,9 @@ This project is a responsive web application designed to showcase my personal po
 
 2. **Advanced Backend Integration:**  
    - Use Firebase or Node.js for real-time content management.  
-   - Enable user authentication for personalized experiences.  
 
 3. **Enhanced CI/CD Workflow:**  
    - Integrate automated testing for code quality.  
-   - Explore additional cloud platforms for deployment scalability.  
 
 4. **SEO Optimization:**  
    - Implement SEO best practices to improve visibility and traffic.  
