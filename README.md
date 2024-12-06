@@ -19,10 +19,6 @@ This project is a responsive web application designed to showcase my personal po
 - Git and GitHub for version control  
 - Azure DevOps for Agile project management  
 - GitHub Actions for CI/CD pipeline  
-
-### **Deployment**  
-- Hosted on **Netlify** (or Vercel/AWS/Azure as selected).  
-
 ---
 
 ## **Agile Workflow**  
