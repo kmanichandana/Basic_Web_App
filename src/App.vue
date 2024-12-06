@@ -128,8 +128,7 @@ main {
 .dark #contact .contact-left h2,
 .dark #contact .social-links a,
 .dark #contact .contact-right label,
-.dark #contact .contact-right input,
-.dark #contact .contact-right textarea {
+.dark #contact .contact-right input {
   color: white !important; /* Ensure all text is white in dark mode */
 }
 

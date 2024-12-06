@@ -27,7 +27,7 @@ export default {
       projects: [
         {
           name: "Task Manager",
-          github: "https://github.com/kmanichandana/Basic_Web_App",  // GitHub repo link
+          github: "https://basic-web-app-udco.onrender.com",  // GitHub repo link
           image: require('@/assets/taskmanager.png'), // Local image for Project One
         },
         {
@@ -64,6 +64,12 @@ export default {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+  transform: translateY(-5px); /* Slight lift effect */
 }
 
 .project-image {
